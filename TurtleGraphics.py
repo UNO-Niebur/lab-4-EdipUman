@@ -3,25 +3,64 @@
 #Date:
 #Assignment:
 
-import turtle #needed generally but not in CodeHS
-hideturtle() #hides the default turtle in CodeHS
-
-def drawSquare(myTurtle, size):
+def drawSquare(DJ, size):
     for i in range(4):
-        myTurtle.forward(size)
-        myTurtle.right(90)
+        DJ.forward(size)
+        DJ.right(90)
 
+
+def fillTopRight(DJ, size):
+    
+    drawSquare(DJ, size)
+
+   
+    DJ.penup()
+    DJ.goto(-170, -30)         
+    DJ.forward(size)        
+    DJ.left(90)
+    DJ.forward(size)      
+    DJ.right(180)           
+    DJ.pendown()
+
+    
+    DJ.color("blue")
+    DJ.begin_fill()
+    drawSquare(DJ, size/2)
+    DJ.end_fill()
+
+
+def squaresInSquares(DJ, size, count):
+    for i in range(count):
+        drawSquare(DJ, size)
+
+       
+        DJ.penup()
+        DJ.forward(10)
+        DJ.right(90)
+        DJ.forward(10)
+        DJ.left(90)
+        DJ.pendown()
+
+        size -= 20
 
 def main():
-    myTurtle = turtle.Turtle()
-    # drawPolygon(myTurtle, 5) #draws a pentagon
-    # drawPolygon(myTurtle, 8) #draws an octogon
+    t = turtle.Turtle()
+    t.speed(20)   
 
-    # fillCorner(myTurtle, 2) #draws a square with top right corner filled in.
-    # fillCorner(myTurtle, 3) #draws a square bottom left corner filled in.
+    
+    t.penup()
+    t.goto(-170, 170)
+    t.setheading(0)
+    t.pendown()
 
-    # squaresInSquares(myTurtle, 5) #draws 5 concentric squares
-    # squaresInSquares(myTurtle, 3) #draws 3 concentric squares
+    fillTopRight(t, 200)
 
+   
+    t.penup()
+    t.goto(30, -40)
+    t.setheading(0)
+    t.pendown()
+
+    squaresInSquares(t, 150, 7)
 
 main()
